@@ -20,7 +20,13 @@ class Product {
     );
   }
 
-  Map<String, dynamic> toMap(Product p) {
-    return {'pname': p.name, 'pprice': p.price, 'pdesc': p.description};
+  static Map<String, dynamic> toMap(Product p) {
+    final map = {'pname': p.name, 'pprice': p.price, 'pdesc': p.description};
+
+    if (p.id != null) {
+      map['id'] = p.id!;
+    }
+
+    return map;
   }
 }

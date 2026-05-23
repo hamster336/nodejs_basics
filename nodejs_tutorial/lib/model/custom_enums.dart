@@ -1,0 +1,1 @@
+enum Task { update, delete }

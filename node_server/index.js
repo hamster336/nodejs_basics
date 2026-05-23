@@ -56,8 +56,7 @@ app.get("/api/get_product", (req, res) => {
 // update can be done by two methods:
 // put -> replace the entire object
 // patch -> replace partially
-
-app.put("/api/update:id", (req, res) => {
+app.put("/api/update/:id", (req, res) => {
     let id = req.params.id;
     let productToUpdate = productData.find(p => p.id === id);
     let index = productData.indexOf(productToUpdate);
@@ -66,6 +65,29 @@ app.put("/api/update:id", (req, res) => {
 
     res.status(200).send({
         'status_code': 200,
-        'message': 'Produc updated'
+        'message': 'Product updated'
     });
+})
+
+
+// delete api
+app.delete("/api/delete/:id", (req, res) => {
+    let id = req.params.id;
+
+    let productToDelete = productData.find(p => p.id === id);
+    let index = productData.indexOf(productToDelete);
+
+    if(index != -1){
+        productData.splice(index, 1);
+    
+        res.status(200).json({
+            'status_code': 200,
+            'message': 'Product deleted'
+        });
+    } else {
+        res.status(404).json({
+            'status_code': 404,
+            'message': 'Product not found'
+        });
+    }
 })

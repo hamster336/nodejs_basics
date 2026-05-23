@@ -63,7 +63,19 @@ class _ProductFormState extends State<ProductForm> {
                     description: descController.text.trim(),
                   );
 
-                  Api.addProduct(data.toMap(data));
+                  if (widget.product == null) {
+                    Api.addProduct(Product.toMap(data));
+                  } else {
+                    // log(widget.product!.id ?? 'null');
+
+                    final data = Product(
+                      id: widget.product!.id,
+                      name: nameController.text.trim(),
+                      price: priceController.text.trim(),
+                      description: descController.text.trim(),
+                    );
+                    Api.updateProduct(widget.product!.id!, Product.toMap(data));
+                  }
                 },
                 child: Text(widget.product == null ? 'Create' : 'Update'),
               ),

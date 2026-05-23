@@ -63,7 +63,33 @@ class Api {
   }
 
   // update put method
-  static Future<void> updateProduct () async {
-    
+  static Future<void> updateProduct(
+    String id,
+    Map<String, dynamic> data,
+  ) async {
+    final url = Uri.parse("${baseUrl}update/$id");
+
+    final res = await http.put(url, body: data);
+
+    if (res.statusCode == 200) {
+      final data = jsonDecode(res.body);
+      log('$data');
+    } else {
+      log('Failed to get response!');
+    }
+  }
+
+  // delete product
+  static Future<void> deleteProduct(String id) async {
+    final url = Uri.parse("${baseUrl}delete/$id");
+
+    final res = await http.delete(url);
+
+    if (res.statusCode == 200) {
+      final data = jsonDecode(res.body.toString());
+      log('$data');
+    } else {
+      log('Failed to get response!');
+    }
   }
 }
