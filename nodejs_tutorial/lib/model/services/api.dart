@@ -88,6 +88,8 @@ class Api {
     if (res.statusCode == 200) {
       final data = jsonDecode(res.body.toString());
       log('$data');
+    } else if (res.statusCode == 404) {
+      log('Product Not Found!');
     } else {
       log('Failed to get response!');
     }
