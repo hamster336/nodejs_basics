@@ -11,10 +11,6 @@ app.use(urlencoded({
 
 const productData = [];
 
-app.listen(2000, () => {
-    console.log('Connected to server at port 2000')
-})
-
 
 // post api
 app.post("/api/add_product", (req, res) => {
@@ -90,4 +86,8 @@ app.delete("/api/delete/:id", (req, res) => {
             'message': 'Product not found'
         });
     }
+})
+
+app.listen(2000, () => {
+    console.log('Connected to server at port 2000')
 })
